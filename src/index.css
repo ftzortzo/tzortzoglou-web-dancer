@@ -120,7 +120,7 @@ All colors MUST be HSL.
   }
 
   .animated-gradient-bg {
-    background: linear-gradient(270deg, #B31B1B, #222, #B31B1B, #444);
+    background: linear-gradient(270deg, #aee9fa, #e0f2fe, #aee9fa, #b6d0e2);
     background-size: 600% 600%;
     animation: gradientMove 12s ease-in-out infinite;
     opacity: 0.95;
