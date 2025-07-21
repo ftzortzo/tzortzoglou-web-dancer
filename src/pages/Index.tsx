@@ -126,13 +126,14 @@ const Index = () => {
   const typewriterText = useTypewriter("Hi, I'm Filippos!");
   const typewriterSubText = useTypewriter("I love building control algorithms that let autonomous vehicles operate at the most complex traffic scenarios!", 30);
 
+  // Update the photos array and all video references to use safe filenames
   const photos = [
-    { filename: "Transportation Research Board 2024_photo.jpg", caption: "Transportation Research Board 2024" },
-    { filename: "CDC 2024 (Milano).jpeg", caption: "CDC 2024 (Milano)" },
-    { filename: "American Control Conference 2024.jpg", caption: "American Control Conference 2024 (Toronto)" },
-    { filename: "IDS Lab party 2024.jpeg", caption: "IDS Lab Party 2024" },
-    { filename: "Fan_in_the_lab_2.jpg", caption: "Fan in the Lab" },
-    { filename: "Fan_in_the_lab.jpg", caption: "Fan in the Lab" }
+    { filename: "transportation_research_board_2024_photo.jpg", caption: "Transportation Research Board 2024" },
+    { filename: "cdc_2024_milano.jpeg", caption: "CDC 2024 (Milano)" },
+    { filename: "american_control_conference_2024.jpg", caption: "American Control Conference 2024 (Toronto)" },
+    { filename: "ids_lab_party_2024.jpeg", caption: "IDS Lab Party 2024" },
+    { filename: "fan_in_the_lab_2.jpg", caption: "Fan in the Lab" },
+    { filename: "fan_in_the_lab.jpg", caption: "Fan in the Lab" }
   ];
 
   return (
@@ -251,7 +252,7 @@ const Index = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/output_video(1).mp4"
+          src="/output_video_1.mp4"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-secondary z-10 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 relative z-20">
@@ -347,15 +348,12 @@ const Index = () => {
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Photos</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {photos.map((photo, idx) => {
-              const alt = photo.caption;
-              return (
-                <div key={idx} className="rounded-lg overflow-hidden shadow-lg">
-                  <img src={`/${photo.filename}`} alt={alt} className="w-full h-64 object-cover" />
-                  <div className="p-4 text-center text-muted-foreground text-sm">{alt}</div>
-                </div>
-              );
-            })}
+            {photos.map(({ filename, caption }, idx) => (
+              <div key={idx} className="rounded-lg overflow-hidden shadow-lg">
+                <img src={`/${filename}`} alt={caption} className="w-full h-64 object-cover" />
+                <div className="p-4 text-center text-muted-foreground text-sm">{caption}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
