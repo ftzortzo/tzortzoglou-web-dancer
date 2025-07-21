@@ -135,6 +135,93 @@ All colors MUST be HSL.
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
   }
+
+  /* Fancy split and fade vanish animation for typewriter */
+  .split-fade-vanish {
+    position: relative;
+    overflow: hidden;
+    animation: splitFadeVanish 2.5s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  @keyframes splitFadeVanish {
+    0% {
+      opacity: 1;
+      filter: blur(0px);
+    }
+    30% {
+      opacity: 1;
+      filter: blur(1px);
+    }
+    60% {
+      opacity: 0.7;
+      filter: blur(2px);
+    }
+    100% {
+      opacity: 0;
+      filter: blur(8px);
+      transform: skewY(6deg) scaleY(1.1) translateY(-30px);
+    }
+  }
+  /* For a more split effect, use pseudo-elements for slices */
+  .split-fade-vanish .split-slice {
+    position: absolute;
+    top: 0; left: 0; width: 20%; height: 100%;
+    background: inherit;
+    pointer-events: none;
+    z-index: 2;
+    animation: splitSliceVanish 2.5s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  .split-fade-vanish .split-slice.slice-1 { left: 0; animation-delay: 0s; }
+  .split-fade-vanish .split-slice.slice-2 { left: 20%; animation-delay: 0.15s; }
+  .split-fade-vanish .split-slice.slice-3 { left: 40%; animation-delay: 0.3s; }
+  .split-fade-vanish .split-slice.slice-4 { left: 60%; animation-delay: 0.45s; }
+  .split-fade-vanish .split-slice.slice-5 { left: 80%; animation-delay: 0.6s; }
+  @keyframes splitSliceVanish {
+    0% { opacity: 0; transform: translateY(0) scaleY(1); }
+    20% { opacity: 0.5; }
+    60% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-60px) scaleY(1.3) skewY(8deg); }
+  }
+  /* Additional vanish animations for typewriter */
+  .fade-vanish {
+    animation: fadeVanish 2.5s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  @keyframes fadeVanish {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .slide-vanish {
+    animation: slideVanish 2.5s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  @keyframes slideVanish {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-80px) skewX(10deg); }
+  }
+  .rotate-vanish {
+    animation: rotateVanish 2.5s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  @keyframes rotateVanish {
+    0% { opacity: 1; transform: rotate(0deg) scale(1); }
+    100% { opacity: 0; transform: rotate(18deg) scale(0.7) translateY(-40px); }
+  }
+  .scale-vanish {
+    animation: scaleVanish 2.5s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  @keyframes scaleVanish {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.5) translateY(-60px); }
+  }
+
+  .typewriter-cursor {
+    display: inline-block;
+    font-weight: bold;
+    color: currentColor;
+    margin-left: 2px;
+    animation: blink-cursor 1s steps(2, start) infinite;
+  }
+  @keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
 }
 
 @layer base {

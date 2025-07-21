@@ -31,39 +31,44 @@ import conferenceImage from "../assets/conference-presentation.jpg";
 import labImage from "../assets/research-lab.jpg";
 
 // Multi-step typewriter effect hook
-function useMultiTypewriter(messages, speed = 60, pause = 1200, deleteSpeed = 30) {
+function useMultiTypewriter(messages, speed = 60, pause = 1200, vanishDuration = 2500) {
   const [displayed, setDisplayed] = useState("");
   const [step, setStep] = useState(0);
+  const [isVanishing, setIsVanishing] = useState(false);
+  const [isDone, setIsDone] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
   useEffect(() => {
     let i = 0;
-    let deleting = false;
     let current = messages[step];
     setDisplayed("");
+    setIsVanishing(false);
+    setIsDone(false);
+    setShowCursor(true);
+    let cursorInterval = setInterval(() => setShowCursor(c => !c), 500);
     const type = () => {
-      if (!deleting) {
-        setDisplayed(current.slice(0, i + 1));
-        i++;
-        if (i === current.length) {
-          if (step < messages.length - 1) {
-            setTimeout(() => { deleting = true; i--; type(); }, pause);
-          }
-        } else {
-          setTimeout(type, speed);
-        }
+      setDisplayed(current.slice(0, i + 1));
+      i++;
+      if (i === current.length) {
+        setTimeout(() => {
+          setIsVanishing(true);
+          setShowCursor(false);
+          setTimeout(() => {
+            if (step < messages.length - 1) {
+              setStep(s => s + 1);
+            } else {
+              setIsDone(true);
+            }
+          }, vanishDuration);
+        }, pause);
       } else {
-        setDisplayed(current.slice(0, i));
-        i--;
-        if (i < 0) {
-          setStep(s => s + 1);
-        } else {
-          setTimeout(type, deleteSpeed);
-        }
+        setTimeout(type, speed);
       }
     };
     type();
+    return () => clearInterval(cursorInterval);
     // eslint-disable-next-line
   }, [step]);
-  return displayed;
+  return { displayed, isVanishing, step, isDone, showCursor };
 }
 
 const Index = () => {
@@ -146,10 +151,19 @@ const Index = () => {
   const multiTypewriterMessages = [
     "Hi, I am Filippos!",
     "Have you ever imagined how much time a person spends driving throughout their life?",
-    "Let's say 1 hour per day, for 365 days a year, over 63 years: that's 22,995 hours—about 2.6 years of your life!",
-    "With autonomous vehicles, we can take those 2.6 years back and spend them on what truly matters!"
+    "Let's say 1 hour per day, for 365 days a year, over 63 years: that's 22,995 hours. About 2.6 years of your life!",
+    "With autonomous vehicles, we can take those 2.6 years back and spend them on what truly matters!",
+    "Not to mention the improvements in safety, energy consumption, travel time, accessibility, and comfort. Autonomous vehicles will change our lives!"
   ];
-  const typewriterText = useMultiTypewriter(multiTypewriterMessages, 60, 2500, 40);
+  const vanishEffects = [
+    'split-fade-vanish',
+    'fade-vanish',
+    'slide-vanish',
+    'rotate-vanish',
+    'scale-vanish'
+  ];
+  const { displayed: typewriterText, isVanishing, step, showCursor } = useMultiTypewriter(multiTypewriterMessages, 60, 2500, 2500);
+  const vanishClass = isVanishing ? vanishEffects[step % vanishEffects.length] : '';
 
   // Update the photos array and all video references to use safe filenames
   const photos = [
@@ -215,8 +229,20 @@ const Index = () => {
       <section className="relative min-h-[60vh] flex flex-col justify-center items-center overflow-hidden pt-16 sm:pt-20">
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6 fade-in-up">
           <div className="flex flex-col items-center">
-            <div className="font-semibold text-primary text-base sm:text-lg md:text-2xl mb-8 bg-white/70 rounded px-4 sm:px-6 py-4 drop-shadow-lg inline-block max-w-full break-words text-center" style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)'}}>
+            <div
+              className={`font-semibold text-primary text-base sm:text-lg md:text-2xl mb-8 bg-white/70 rounded px-4 sm:px-6 py-4 drop-shadow-lg inline-block max-w-full break-words text-center ${vanishClass}`}
+              style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)', position: 'relative'}}>
               {typewriterText}
+              <span className="typewriter-cursor">|</span>
+              {isVanishing && vanishClass === 'split-fade-vanish' && (
+                <>
+                  <div className="split-slice slice-1" />
+                  <div className="split-slice slice-2" />
+                  <div className="split-slice slice-3" />
+                  <div className="split-slice slice-4" />
+                  <div className="split-slice slice-5" />
+                </>
+              )}
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
