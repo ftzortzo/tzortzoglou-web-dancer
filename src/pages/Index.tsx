@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -29,6 +29,22 @@ import heroImage from "../assets/hero-autonomous-cars.jpg";
 import profileImage from "../assets/profile-filippos.jpg";
 import conferenceImage from "../assets/conference-presentation.jpg";
 import labImage from "../assets/research-lab.jpg";
+
+// Typewriter effect hook
+function useTypewriter(text: string, speed = 60) {
+  const [displayed, setDisplayed] = useState("");
+  useEffect(() => {
+    let i = 0;
+    setDisplayed("");
+    const interval = setInterval(() => {
+      setDisplayed(text.slice(0, i + 1));
+      i++;
+      if (i === text.length) clearInterval(interval);
+    }, speed);
+    return () => clearInterval(interval);
+  }, [text, speed]);
+  return displayed;
+}
 
 const Index = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -107,6 +123,9 @@ const Index = () => {
     { type: "video", src: "#", alt: "Research Demo", caption: "Traffic optimization simulation demo" },
   ];
 
+  const typewriterText = useTypewriter("Hi, I'm Filippos!");
+  const typewriterSubText = useTypewriter("I love building control algorithms that let autonomous vehicles operate at the most complex traffic scenarios!", 30);
+
   return (
     <div className={`min-h-screen font-inter scroll-smooth ${darkMode ? 'dark' : ''}`}>
       {/* Navigation */}
@@ -133,18 +152,22 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
+      <section className="relative min-h-[60vh] flex flex-col justify-center items-center overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/hero-bg.mp4"
         />
         <div className="absolute inset-0 hero-gradient" />
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6 fade-in-up">
           <h1 className="font-poppins font-bold text-5xl md:text-7xl mb-6">
-            Hi, I'm Filippos.
+            {typewriterText}
           </h1>
           <h2 className="font-poppins font-semibold text-2xl md:text-3xl mb-8 text-white/90">
-            I build control algorithms that let human-driven and autonomous vehicles dance together at traffic lights.
+            {typewriterSubText}
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary" className="gap-2">
@@ -153,7 +176,7 @@ const Index = () => {
                 Download CV
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="gap-2 border-white text-white hover:bg-white hover:text-primary">
+            <Button size="lg" variant="outline" className="gap-2 border-white text-primary hover:bg-white hover:text-primary">
               <Play className="h-5 w-5" />
               Watch 2-min Research Reel
             </Button>
@@ -175,7 +198,7 @@ const Index = () => {
               <h2 className="font-poppins font-bold text-4xl text-foreground mb-6">About Me</h2>
               <div className="text-lg text-muted-foreground leading-relaxed space-y-4">
                 <p>
-                  I'm a second-year Ph.D. candidate in Civil & Environmental Engineering at Cornell University, 
+                  I'm a third-year Ph.D. candidate in Civil & Environmental Engineering at Cornell University, 
                   working in the IDS Lab with Prof. Andreas Malikopoulos. My research targets real-time optimal 
                   control for mixed traffic at signalized intersections, blending classical control, reinforcement 
                   learning, and micromobility insights.
@@ -185,6 +208,7 @@ const Index = () => {
                   and I love translating theory into code that actually runs. When I'm not optimizing traffic 
                   flows, you'll find me exploring Ithaca's gorges or perfecting my espresso brewing technique.
                 </p>
+                <div className="italic text-primary mt-4">“Fun fact: I once coded a traffic simulation while waiting for my espresso!”</div>
               </div>
             </div>
             <div className="flex justify-center">
@@ -400,12 +424,19 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 bg-secondary border-t">
+      <footer className="py-8 bg-secondary border-t relative">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-muted-foreground">
             © {currentYear} Filippos Tzortzoglou — Made with ☕ & MATLAB scripts.
           </p>
         </div>
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="absolute right-8 bottom-8 bg-primary text-white rounded-full p-3 shadow-lg hover:bg-primary/90 transition-all"
+          aria-label="Back to top"
+        >
+          ↑
+        </button>
       </footer>
     </div>
   );

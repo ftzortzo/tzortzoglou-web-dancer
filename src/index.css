@@ -118,6 +118,19 @@ All colors MUST be HSL.
   .scroll-smooth {
     scroll-behavior: smooth;
   }
+
+  .animated-gradient-bg {
+    background: linear-gradient(270deg, #B31B1B, #222, #B31B1B, #444);
+    background-size: 600% 600%;
+    animation: gradientMove 12s ease-in-out infinite;
+    opacity: 0.95;
+  }
+
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 }
 
 @layer base {
