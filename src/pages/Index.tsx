@@ -208,7 +208,7 @@ const Index = () => {
                   and I love translating theory into code that actually runs. When I'm not optimizing traffic 
                   flows, you'll find me exploring Ithaca's gorges or perfecting my espresso brewing technique.
                 </p>
-                <div className="italic text-primary mt-4">“Fun fact: I once coded a traffic simulation while waiting for my espresso!”</div>
+                <p className="mt-4">Outside of research, I enjoy playing soccer and am an enthusiastic supporter of Arsenal Football Club in the Premier League.</p>
               </div>
             </div>
             <div className="flex justify-center">
