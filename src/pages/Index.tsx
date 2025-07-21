@@ -341,8 +341,17 @@ const Index = () => {
       </section>
 
       {/* Photos */}
-      <section id="photos" className="py-20">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="photos" className="py-20 relative overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src={`${import.meta.env.BASE_URL}wall.mp4`}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-secondary z-10 pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-6 relative z-20">
           <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Photos</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {photos.map(({ filename, caption }, idx) => (
@@ -356,8 +365,17 @@ const Index = () => {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-20">
-        <div className="max-w-4xl mx-auto px-6">
+      <section id="contact" className="py-20 relative overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src={`${import.meta.env.BASE_URL}drone.mp4`}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-secondary z-10 pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 relative z-20">
           <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Get In Touch</h2>
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-6">
