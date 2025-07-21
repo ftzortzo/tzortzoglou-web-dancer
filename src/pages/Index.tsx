@@ -218,8 +218,8 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-secondary relative overflow-hidden">
-        <div className="absolute inset-0 about-gradient z-10 pointer-events-none" />
+      <section id="about" className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/70 to-white/90 z-10 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 relative z-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
