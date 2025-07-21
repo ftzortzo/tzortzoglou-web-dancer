@@ -147,9 +147,11 @@ const Index = () => {
             I build control algorithms that let human-driven and autonomous vehicles dance together at traffic lights.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="secondary" className="gap-2">
-              <Download className="h-5 w-5" />
-              Download CV
+            <Button asChild size="lg" variant="secondary" className="gap-2">
+              <a href="/Filippos_Tzortzoglou_CV.pdf" target="_blank" rel="noopener noreferrer">
+                <Download className="h-5 w-5" />
+                Download CV
+              </a>
             </Button>
             <Button size="lg" variant="outline" className="gap-2 border-white text-white hover:bg-white hover:text-primary">
               <Play className="h-5 w-5" />
@@ -338,9 +340,11 @@ const Index = () => {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="font-poppins font-bold text-4xl text-foreground mb-12">Downloadables</h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="gap-2">
-              <Download className="h-5 w-5" />
-              PDF CV
+            <Button asChild size="lg" className="gap-2">
+              <a href="/Filippos_Tzortzoglou_CV.pdf" target="_blank" rel="noopener noreferrer">
+                <Download className="h-5 w-5" />
+                PDF CV
+              </a>
             </Button>
             <Button size="lg" variant="outline" className="gap-2">
               <FileText className="h-5 w-5" />
