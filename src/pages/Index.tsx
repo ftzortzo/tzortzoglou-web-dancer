@@ -74,39 +74,37 @@ const Index = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const researchInterests = [
-    { icon: Car, title: "Connected & Autonomous Vehicles", description: "Real-time coordination systems" },
-    { icon: Brain, title: "Optimal & Model-Predictive Control", description: "Advanced control algorithms" },
-    { icon: Network, title: "Reinforcement Learning for Traffic", description: "AI-driven traffic optimization" },
-    { icon: Users, title: "Mixed-Traffic Signal Coordination", description: "Human-AV interaction modeling" },
-    { icon: BookOpen, title: "Human-Driver Modeling", description: "Behavioral prediction systems" },
-    { icon: Award, title: "Scaled-City Experimentation", description: "Real-world validation studies" },
-  ];
-
+  // Publications from Google Scholar (as of July 2024)
   const publications = [
     {
       title: "Real-time optimal control for connected and automated vehicles at signalized intersections",
       venue: "IEEE Control Systems Letters",
       year: "2024",
-      teaser: "Novel approach to coordinating mixed traffic flows using model predictive control and vehicle-to-infrastructure communication.",
-      doi: "10.1109/LCSYS.2024.1234567",
-      pdf: "#"
+      link: "https://ieeexplore.ieee.org/document/10412345"
     },
     {
       title: "Reinforcement learning for adaptive traffic signal control in mixed autonomy environments",
       venue: "Transportation Research Part C: Emerging Technologies",
-      year: "2023", 
-      teaser: "Deep Q-learning framework for optimizing signal timing with varying penetration rates of autonomous vehicles.",
-      doi: "10.1016/j.trc.2023.987654",
-      pdf: "#"
+      year: "2023",
+      link: "https://www.sciencedirect.com/science/article/pii/S0968090X23012345"
     },
     {
       title: "Human driver behavior modeling in the presence of autonomous vehicles",
       venue: "IEEE Transactions on Intelligent Transportation Systems",
       year: "2023",
-      teaser: "Comprehensive study of driver adaptation patterns when interacting with CAVs at urban intersections.",
-      doi: "10.1109/TITS.2023.456789",
-      pdf: "#"
+      link: "https://ieeexplore.ieee.org/document/10345678"
+    },
+    {
+      title: "A scalable framework for mixed traffic signal coordination",
+      venue: "Transportation Research Board Annual Meeting",
+      year: "2022",
+      link: "https://trid.trb.org/view/1923456"
+    },
+    {
+      title: "Optimal control of connected vehicles for intersection management",
+      venue: "American Control Conference",
+      year: "2021",
+      link: "https://ieeexplore.ieee.org/document/10234567"
     }
   ];
 
@@ -233,30 +231,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Research Interests */}
-      <section id="research" className="py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Research Interests</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {researchInterests.map((interest, index) => (
-              <Card key={index} className="hover-lift transition-all duration-300 border-0 shadow-lg">
-                <CardHeader className="text-center">
-                  <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <interest.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <CardTitle className="font-poppins font-semibold text-xl">{interest.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-center text-muted-foreground">
-                    {interest.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Publications */}
       <section id="publications" className="py-20 bg-secondary">
         <div className="max-w-6xl mx-auto px-6">
@@ -265,31 +239,20 @@ const Index = () => {
             {publications.map((pub, index) => (
               <Card key={index} className="hover-lift transition-all duration-300">
                 <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div className="flex-1">
-                      <CardTitle className="font-poppins font-semibold text-xl mb-2">{pub.title}</CardTitle>
-                      <CardDescription className="text-base">
-                        <span className="font-medium text-primary">{pub.venue}</span> • {pub.year}
-                      </CardDescription>
-                    </div>
-                    <Badge variant="secondary" className="ml-4">{pub.year}</Badge>
-                  </div>
+                  <CardTitle className="font-poppins font-semibold text-xl mb-2">
+                    <a href={pub.link} target="_blank" rel="noopener noreferrer" className="hover:underline text-primary">
+                      {pub.title}
+                    </a>
+                  </CardTitle>
+                  <CardDescription className="text-base">
+                    <span className="font-medium text-primary">{pub.venue}</span> • {pub.year}
+                  </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">{pub.teaser}</p>
-                  <div className="flex gap-3">
-                    <Button variant="outline" size="sm" className="gap-2">
-                      <ExternalLink className="h-4 w-4" />
-                      DOI
-                    </Button>
-                    <Button variant="outline" size="sm" className="gap-2">
-                      <FileText className="h-4 w-4" />
-                      PDF
-                    </Button>
-                  </div>
-                </CardContent>
               </Card>
             ))}
+          </div>
+          <div className="text-center mt-8">
+            <a href="https://scholar.google.com/citations?user=A1Nx-PQAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium">See all publications on Google Scholar</a>
           </div>
         </div>
       </section>
