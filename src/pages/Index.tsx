@@ -355,21 +355,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Downloadables */}
-      <section id="downloads" className="py-20 bg-secondary">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-poppins font-bold text-4xl text-foreground mb-12">Downloadables</h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="gap-2">
-              <a href={`${import.meta.env.BASE_URL}Filippos_Tzortzoglou_CV_v2.pdf`} target="_blank" rel="noopener noreferrer">
-                <Download className="h-5 w-5" />
-                PDF CV
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Contact */}
       <section id="contact" className="py-20">
         <div className="max-w-4xl mx-auto px-6">
