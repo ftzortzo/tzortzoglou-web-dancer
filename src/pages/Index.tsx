@@ -176,9 +176,11 @@ const Index = () => {
                 Download CV
               </a>
             </Button>
-            <Button size="lg" variant="outline" className="gap-2 border-white text-primary hover:bg-white hover:text-primary">
-              <Play className="h-5 w-5" />
-              Watch 2-min Research Reel
+            <Button asChild size="lg" variant="outline" className="gap-2 border-white text-primary hover:bg-white hover:text-primary">
+              <a href="https://youtu.be/FB6ATMZHgs0" target="_blank" rel="noopener noreferrer">
+                <Play className="h-5 w-5" />
+                Watch 2-min Research Reel
+              </a>
             </Button>
           </div>
         </div>
@@ -191,8 +193,17 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-secondary">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="about" className="py-20 bg-secondary relative overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/hero-bg2.mp4"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-secondary z-10 pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-6 relative z-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h2 className="font-poppins font-bold text-4xl text-foreground mb-6">About Me</h2>
