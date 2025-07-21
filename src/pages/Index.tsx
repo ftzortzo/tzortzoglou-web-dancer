@@ -136,6 +136,17 @@ const Index = () => {
     { filename: "fan_in_the_lab.jpg", caption: "Fan in the Lab" }
   ];
 
+  // Randomly select a hero background video on mount
+  const heroVideos = [
+    `${import.meta.env.BASE_URL}hero-bg.mp4`,
+    `${import.meta.env.BASE_URL}hero-bg2.mp4`
+  ];
+  const [selectedHeroVideo, setSelectedHeroVideo] = useState(heroVideos[0]);
+  useEffect(() => {
+    setSelectedHeroVideo(heroVideos[Math.floor(Math.random() * heroVideos.length)]);
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div className={`min-h-screen font-inter scroll-smooth ${darkMode ? 'dark' : ''}`}>
       {/* Navigation */}
@@ -161,17 +172,19 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex flex-col justify-center items-center overflow-hidden pt-16 sm:pt-20">
+      {/* Shared video background for hero + about */}
+      <div className="fixed inset-0 w-full h-full -z-10 pointer-events-none">
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          src={`${import.meta.env.BASE_URL}hero-bg.mp4`}
+          className="absolute inset-0 w-full h-full object-cover"
+          src={selectedHeroVideo}
         />
         <div className="absolute inset-0 hero-gradient" />
+      </div>
+      <section className="relative min-h-[60vh] flex flex-col justify-center items-center overflow-hidden pt-16 sm:pt-20">
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6 fade-in-up">
           <h1 className="font-poppins font-bold text-3xl sm:text-4xl md:text-7xl mb-6 break-words text-center">
             {typewriterText}
@@ -206,14 +219,6 @@ const Index = () => {
 
       {/* About Section */}
       <section id="about" className="py-20 bg-secondary relative overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          src={`${import.meta.env.BASE_URL}hero-bg2.mp4`}
-        />
         <div className="absolute inset-0 about-gradient z-10 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 relative z-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
