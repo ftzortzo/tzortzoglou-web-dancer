@@ -30,19 +30,39 @@ import profileImage from "../assets/profile-filippos.jpg";
 import conferenceImage from "../assets/conference-presentation.jpg";
 import labImage from "../assets/research-lab.jpg";
 
-// Typewriter effect hook
-function useTypewriter(text: string, speed = 60) {
+// Multi-step typewriter effect hook
+function useMultiTypewriter(messages, speed = 60, pause = 1200, deleteSpeed = 30) {
   const [displayed, setDisplayed] = useState("");
+  const [step, setStep] = useState(0);
   useEffect(() => {
     let i = 0;
+    let deleting = false;
+    let current = messages[step];
     setDisplayed("");
-    const interval = setInterval(() => {
-      setDisplayed(text.slice(0, i + 1));
-      i++;
-      if (i === text.length) clearInterval(interval);
-    }, speed);
-    return () => clearInterval(interval);
-  }, [text, speed]);
+    const type = () => {
+      if (!deleting) {
+        setDisplayed(current.slice(0, i + 1));
+        i++;
+        if (i === current.length) {
+          if (step < messages.length - 1) {
+            setTimeout(() => { deleting = true; i--; type(); }, pause);
+          }
+        } else {
+          setTimeout(type, speed);
+        }
+      } else {
+        setDisplayed(current.slice(0, i));
+        i--;
+        if (i < 0) {
+          setStep(s => s + 1);
+        } else {
+          setTimeout(type, deleteSpeed);
+        }
+      }
+    };
+    type();
+    // eslint-disable-next-line
+  }, [step]);
   return displayed;
 }
 
@@ -123,8 +143,13 @@ const Index = () => {
     { type: "video", src: "#", alt: "Research Demo", caption: "Traffic optimization simulation demo" },
   ];
 
-  const typewriterText = useTypewriter("Hi, I'm Filippos!");
-  const typewriterSubText = useTypewriter("I love building control algorithms that let autonomous vehicles operate at the most complex traffic scenarios!", 30);
+  const multiTypewriterMessages = [
+    "Hi, I am Filippos!",
+    "Have you ever imagined how much time a person spends driving throughout their life?",
+    "Let's say 1 hour per day, for 365 days a year, over 63 years: that's 22,995 hours—about 2.6 years of your life!",
+    "With autonomous vehicles, we can take those 2.6 years back and spend them on what truly matters!"
+  ];
+  const typewriterText = useMultiTypewriter(multiTypewriterMessages, 60, 2500, 40);
 
   // Update the photos array and all video references to use safe filenames
   const photos = [
@@ -189,12 +214,9 @@ const Index = () => {
       </div>
       <section className="relative min-h-[60vh] flex flex-col justify-center items-center overflow-hidden pt-16 sm:pt-20">
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6 fade-in-up">
-          <h1 className="font-poppins font-bold text-3xl sm:text-4xl md:text-7xl mb-6 break-words text-center">
-            {typewriterText}
-          </h1>
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center">
             <div className="font-semibold text-primary text-base sm:text-lg md:text-2xl mb-8 bg-white/70 rounded px-4 sm:px-6 py-4 drop-shadow-lg inline-block max-w-full break-words text-center" style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)'}}>
-              {typewriterSubText}
+              {typewriterText}
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -229,7 +251,7 @@ const Index = () => {
               <h2 className="font-poppins font-bold text-4xl text-foreground mb-6">About Me</h2>
               <div className="text-lg text-muted-foreground leading-relaxed space-y-4 bg-white/70 rounded px-6 py-4 drop-shadow-lg" style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)'}}>
                 <p>
-                  I'm a third-year Ph.D. candidate in <a href="https://www.engineering.cornell.edu/cee/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Civil & Environmental Engineering</a> at Cornell University, 
+                  My name is Filippos N. Tzortzoglou and I'm a third-year Ph.D. candidate in <a href="https://www.engineering.cornell.edu/cee/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Civil & Environmental Engineering</a> at Cornell University, 
                   working in the <a href="https://ids-lab.net/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">IDS Lab</a> with <a href="https://scholar.google.com/citations?user=ScKI3psAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Prof. Andreas Malikopoulos</a>. My research targets real-time optimal 
                   control for mixed traffic at signalized intersections, blending classical control, reinforcement 
                   learning, and micromobility insights.
