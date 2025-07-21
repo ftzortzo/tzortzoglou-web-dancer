@@ -76,12 +76,12 @@ const Index = () => {
 
   // Publications with user-provided publisher links (July 2024)
   const publications = [
-    { title: "Stochastic time-optimal trajectory planning for connected and automated vehicles in mixed-traffic merging scenarios", venue: "IEEE Transactions on Control Systems Technology", year: "2024", link: "https://ieeexplore.ieee.org/abstract/document/10621701" },
-    { title: "Sampled-data controllers for autonomous vehicles on lane-free roads", venue: "2022 30th Mediterranean Conference on Control and Automation (MED)", year: "2022", link: "https://ieeexplore.ieee.org/abstract/document/9837160" },
-    { title: "A mobility equity metric for multi-modal intelligent transportation systems", venue: "IFAC-PapersOnLine", year: "2024", link: "https://www.sciencedirect.com/science/article/pii/S2405896324004117" },
     { title: "On mobility equity and the promise of emerging transportation systems", venue: "IEEE Transactions on Intelligent Transportation Systems", year: "2025", link: "https://ieeexplore.ieee.org/abstract/document/10932667" },
+    { title: "A mobility equity metric for multi-modal intelligent transportation systems", venue: "IFAC-PapersOnLine", year: "2024", link: "https://www.sciencedirect.com/science/article/pii/S2405896324004117" },
+    { title: "Stochastic time-optimal trajectory planning for connected and automated vehicles in mixed-traffic merging scenarios", venue: "IEEE Transactions on Control Systems Technology", year: "2024", link: "https://ieeexplore.ieee.org/abstract/document/10621701" },
     { title: "Potential-Based Controller for Efficient Flow of Connected and Automated Vehicles", venue: "2024 American Control Conference (ACC)", year: "2024", link: "https://ieeexplore.ieee.org/abstract/document/10644722" },
-    { title: "A feasibility analysis at signal-free intersections", venue: "IEEE Control Systems Letters", year: "2024", link: "https://ieeexplore.ieee.org/abstract/document/10551377" }
+    { title: "A feasibility analysis at signal-free intersections", venue: "IEEE Control Systems Letters", year: "2024", link: "https://ieeexplore.ieee.org/abstract/document/10551377" },
+    { title: "Sampled-data controllers for autonomous vehicles on lane-free roads", venue: "2022 30th Mediterranean Conference on Control and Automation (MED)", year: "2022", link: "https://ieeexplore.ieee.org/abstract/document/9837160" }
   ];
 
   // Venue links
