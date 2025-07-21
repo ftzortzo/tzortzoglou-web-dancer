@@ -6,7 +6,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d90cb02f-46d0-43f5-81a2-caf16db37ebc) and start prompting.
+Simply visit the [Lovable Project]) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -14,7 +14,7 @@ Changes made via Lovable will be committed automatically to this repo.
 
 If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+The only requirement is having Node.js & npm installed - [install with nvm]
 
 Follow these steps:
 
