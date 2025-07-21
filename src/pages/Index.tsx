@@ -74,45 +74,47 @@ const Index = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  // Publications from Google Scholar (as of July 2024)
+  // Publications with user-provided publisher links (July 2024)
   const publications = [
-    {
-      title: "Real-time optimal control for connected and automated vehicles at signalized intersections",
-      venue: "IEEE Control Systems Letters",
-      year: "2024",
-      link: "https://ieeexplore.ieee.org/document/10412345"
-    },
-    {
-      title: "Reinforcement learning for adaptive traffic signal control in mixed autonomy environments",
-      venue: "Transportation Research Part C: Emerging Technologies",
-      year: "2023",
-      link: "https://www.sciencedirect.com/science/article/pii/S0968090X23012345"
-    },
-    {
-      title: "Human driver behavior modeling in the presence of autonomous vehicles",
-      venue: "IEEE Transactions on Intelligent Transportation Systems",
-      year: "2023",
-      link: "https://ieeexplore.ieee.org/document/10345678"
-    },
-    {
-      title: "A scalable framework for mixed traffic signal coordination",
-      venue: "Transportation Research Board Annual Meeting",
-      year: "2022",
-      link: "https://trid.trb.org/view/1923456"
-    },
-    {
-      title: "Optimal control of connected vehicles for intersection management",
-      venue: "American Control Conference",
-      year: "2021",
-      link: "https://ieeexplore.ieee.org/document/10234567"
-    }
+    { title: "Stochastic time-optimal trajectory planning for connected and automated vehicles in mixed-traffic merging scenarios", venue: "IEEE Transactions on Control Systems Technology", year: "2024", link: "https://ieeexplore.ieee.org/abstract/document/10621701" },
+    { title: "Sampled-data controllers for autonomous vehicles on lane-free roads", venue: "2022 30th Mediterranean Conference on Control and Automation (MED)", year: "2022", link: "https://ieeexplore.ieee.org/abstract/document/9837160" },
+    { title: "A mobility equity metric for multi-modal intelligent transportation systems", venue: "IFAC-PapersOnLine", year: "2024", link: "https://www.sciencedirect.com/science/article/pii/S2405896324004117" },
+    { title: "On mobility equity and the promise of emerging transportation systems", venue: "IEEE Transactions on Intelligent Transportation Systems", year: "2025", link: "https://ieeexplore.ieee.org/abstract/document/10932667" },
+    { title: "Potential-Based Controller for Efficient Flow of Connected and Automated Vehicles", venue: "2024 American Control Conference (ACC)", year: "2024", link: "https://ieeexplore.ieee.org/abstract/document/10644722" },
+    { title: "A feasibility analysis at signal-free intersections", venue: "IEEE Control Systems Letters", year: "2024", link: "https://ieeexplore.ieee.org/abstract/document/10551377" }
   ];
 
+  // Venue links
+  const venueLinks = {
+    "IEEE Transactions on Control Systems Technology": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=87",
+    "2022 30th Mediterranean Conference on Control and Automation (MED)": "https://ieeexplore.ieee.org/xpl/conhome/1001510/all-proceedings",
+    "IFAC-PapersOnLine": "https://www.sciencedirect.com/journal/ifac-papersonline",
+    "IEEE Transactions on Intelligent Transportation Systems": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=6979",
+    "2024 American Control Conference (ACC)": "https://ieeexplore.ieee.org/xpl/conhome/1000030/all-proceedings",
+    "IEEE Control Systems Letters": "https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=7782633"
+  };
+
   const honors = [
-    { year: "2024", title: "NSF Graduate Research Fellowship", description: "National Science Foundation fellowship for outstanding graduate students" },
-    { year: "2024", title: "IEEE ITSC 2027 Publicity Chair", description: "Selected to lead publicity efforts for major international conference" },
-    { year: "2023", title: "Cornell Excellence in Research Award", description: "Recognition for outstanding research contributions in transportation" },
-    { year: "2023", title: "Best Paper Award - TRB Annual Meeting", description: "Top paper in Connected and Automated Vehicles session" },
+    {
+      year: "2025",
+      title: "IEEE Outstanding Student Paper Prize on Smart Cities",
+      description: <>For the paper: <a href="https://ieeexplore.ieee.org/abstract/document/10551377" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">F.N. Tzortzoglou, L.E. Beaver, A. Malikopoulos, 'A Feasibility Analysis at Signal-Free Intersections'</a>, IEEE Letters on Control Systems Society (LCSS).</>
+    },
+    {
+      year: "2024",
+      title: "Finalist for Best Paper Award at the 17th IFAC Symposium on Control of Transportation Systems (CTS2024)",
+      description: <>For the paper: <a href="https://www.sciencedirect.com/science/article/pii/S2405896324004117" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">H. Bang, A. Dave, F.N. Tzortzoglou, A.A. Malikopoulos, 'A Mobility Equity Metric for Multi-Modal Intelligent Transportation Systems'</a>.</>
+    },
+    {
+      year: "2024",
+      title: "NSF Grant for Non-Academic Research Internships for Graduate Students (INTERN) Program",
+      description: "Awarded by the National Science Foundation."
+    },
+    {
+      year: "2024",
+      title: "Fellowship from the Gerondelis Foundation",
+      description: "Awarded by the Gerondelis Foundation."
+    }
   ];
 
   const mediaItems = [
@@ -123,6 +125,15 @@ const Index = () => {
 
   const typewriterText = useTypewriter("Hi, I'm Filippos!");
   const typewriterSubText = useTypewriter("I love building control algorithms that let autonomous vehicles operate at the most complex traffic scenarios!", 30);
+
+  const photos = [
+    { filename: "Transportation Research Board 2024_photo.jpg", caption: "Transportation Research Board 2024" },
+    { filename: "CDC 2024 (Milano).jpeg", caption: "CDC 2024 (Milano)" },
+    { filename: "American Control Conference 2024.jpg", caption: "American Control Conference 2024 (Toronto)" },
+    { filename: "IDS Lab party 2024.jpeg", caption: "IDS Lab Party 2024" },
+    { filename: "Fan_in_the_lab_2.jpg", caption: "Fan in the Lab" },
+    { filename: "Fan_in_the_lab.jpg", caption: "Fan in the Lab" }
+  ];
 
   return (
     <div className={`min-h-screen font-inter scroll-smooth ${darkMode ? 'dark' : ''}`}>
@@ -164,9 +175,11 @@ const Index = () => {
           <h1 className="font-poppins font-bold text-5xl md:text-7xl mb-6">
             {typewriterText}
           </h1>
-          <h2 className="font-poppins font-semibold text-2xl md:text-3xl mb-8 text-white/90">
-            {typewriterSubText}
-          </h2>
+          <div className="flex justify-center">
+            <div className="font-semibold text-primary text-xl md:text-2xl mb-8 bg-white/70 rounded px-6 py-4 drop-shadow-lg inline-block" style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)'}}>
+              {typewriterSubText}
+            </div>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary" className="gap-2">
               <a href="/Filippos_Tzortzoglou_CV_v2.pdf" target="_blank" rel="noopener noreferrer">
@@ -200,31 +213,30 @@ const Index = () => {
           className="absolute inset-0 w-full h-full object-cover z-0"
           src="/hero-bg2.mp4"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-secondary z-10 pointer-events-none" />
+        <div className="absolute inset-0 about-gradient z-10 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 relative z-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h2 className="font-poppins font-bold text-4xl text-foreground mb-6">About Me</h2>
-              <div className="text-lg text-muted-foreground leading-relaxed space-y-4">
+              <div className="text-lg text-muted-foreground leading-relaxed space-y-4 bg-white/70 rounded px-6 py-4 drop-shadow-lg" style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)'}}>
                 <p>
-                  I'm a third-year Ph.D. candidate in Civil & Environmental Engineering at Cornell University, 
-                  working in the IDS Lab with Prof. Andreas Malikopoulos. My research targets real-time optimal 
+                  I'm a third-year Ph.D. candidate in <a href="https://www.engineering.cornell.edu/cee/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Civil & Environmental Engineering</a> at Cornell University, 
+                  working in the <a href="https://ids-lab.net/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">IDS Lab</a> with <a href="https://scholar.google.com/citations?user=ScKI3psAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Prof. Andreas Malikopoulos</a>. My research targets real-time optimal 
                   control for mixed traffic at signalized intersections, blending classical control, reinforcement 
                   learning, and micromobility insights.
                 </p>
                 <p>
-                  I've co-authored papers in IEEE Control Systems Letters and Transportation Research Part C, 
-                  and I love translating theory into code that actually runs. When I'm not optimizing traffic 
-                  flows, you'll find me exploring Ithaca's gorges or perfecting my espresso brewing technique.
-                </p>
-                <p className="mt-4">Outside of research, I enjoy playing soccer and am an enthusiastic supporter of Arsenal Football Club in the Premier League.</p>
+                  I've co-authored papers in IEEE Transactions on Control Systems Technology, IEEE Transactions on Intelligent Transportation Systems, IEEE Control Systems Letters, 
+                  and I love translating theory into code that actually runs.                </p>
+                <p className="mt-4"> When I'm not optimizing traffic 
+                flows, I enjoy playing soccer and am an enthusiastic supporter of Arsenal Football Club in the Premier League.</p>
               </div>
             </div>
             <div className="flex justify-center">
               <img 
                 src={profileImage} 
                 alt="Filippos Tzortzoglou" 
-                className="w-80 h-80 rounded-full object-cover shadow-2xl"
+                className="w-80 h-80 rounded-full object-cover shadow-2xl ring-4 ring-white ring-offset-2 ring-offset-blue-100"
               />
             </div>
           </div>
@@ -232,9 +244,18 @@ const Index = () => {
       </section>
 
       {/* Publications */}
-      <section id="publications" className="py-20 bg-secondary">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Publications</h2>
+      <section id="publications" className="py-20 bg-secondary relative overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/output_video(1).mp4"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-secondary z-10 pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-6 relative z-20">
+          <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Selected Publications</h2>
           <div className="space-y-6">
             {publications.map((pub, index) => (
               <Card key={index} className="hover-lift transition-all duration-300">
@@ -245,7 +266,7 @@ const Index = () => {
                     </a>
                   </CardTitle>
                   <CardDescription className="text-base">
-                    <span className="font-medium text-primary">{pub.venue}</span> • {pub.year}
+                    <a href={venueLinks[pub.venue]} target="_blank" rel="noopener noreferrer" className="font-medium text-primary hover:underline">{pub.venue}</a> • {pub.year}
                   </CardDescription>
                 </CardHeader>
               </Card>
@@ -257,63 +278,18 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Media Gallery */}
-      <section id="media" className="py-20">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Media</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {mediaItems.map((item, index) => (
-              <Card key={index} className="hover-lift transition-all duration-300 overflow-hidden">
-                <div className="aspect-video bg-muted">
-                  {item.type === 'image' ? (
-                    <img 
-                      src={item.src} 
-                      alt={item.alt}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-muted">
-                      <Video className="h-12 w-12 text-muted-foreground" />
-                    </div>
-                  )}
-                </div>
-                <CardContent className="p-4">
-                  <p className="text-sm text-muted-foreground">{item.caption}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Blog/News */}
-      <section id="blog" className="py-20 bg-secondary">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Latest News</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((item) => (
-              <Card key={item} className="hover-lift transition-all duration-300">
-                <div className="aspect-video bg-muted" />
-                <CardHeader>
-                  <CardTitle className="font-poppins font-semibold">Research Breakthrough in Mixed Traffic Control</CardTitle>
-                  <CardDescription>March 2024</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">
-                    Our latest findings demonstrate a 35% improvement in intersection efficiency when using 
-                    our novel coordination algorithm for mixed autonomous and human-driven traffic...
-                  </p>
-                  <Button variant="outline" size="sm">Read more</Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Honors & Service */}
-      <section id="honors" className="py-20">
-        <div className="max-w-4xl mx-auto px-6">
+      <section id="honors" className="py-20 relative overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/bird_view_highway.mp4"
+        />
+        <div className="absolute inset-0 about-gradient z-10 pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 relative z-20">
           <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Honors & Service</h2>
           <div className="space-y-6">
             {honors.map((honor, index) => (
@@ -333,6 +309,57 @@ const Index = () => {
         </div>
       </section>
 
+      {/* News */}
+      <section id="news" className="py-20 bg-secondary relative overflow-hidden">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/autonomous_robot.mp4"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-secondary z-10 pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 relative z-20">
+          <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">News</h2>
+          <div className="space-y-8 text-lg">
+            <div>
+              <span className="text-2xl mr-2">🚦</span>
+              <b><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A1Nx-PQAAAAJ&citation_for_view=A1Nx-PQAAAAJ:_FxGoFyzp5QC" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Mixed Traffic: A Perspective from Long Duration Autonomy</a></b> — Submitted to IEEE Transactions on Intelligent Transportation Systems (T-ITS)
+              <p className="mt-2 text-muted-foreground">We recently submitted our paper "Mixed Traffic: A Perspective from Long Duration Autonomy" to IEEE T-ITS. In this work, we explore how autonomous vehicles can operate reliably over extended time horizons in environments shared with human drivers. By introducing a long-duration autonomy perspective, we aim to shift the conversation from short-term decision-making to sustained performance in mixed traffic scenarios.</p>
+            </div>
+            <div>
+              <span className="text-2xl mr-2">🚸</span>
+              <b><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A1Nx-PQAAAAJ&citation_for_view=A1Nx-PQAAAAJ:eQOLeE2rZwMC" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Handling Pedestrian Uncertainty in Coordinating Autonomous Vehicles at Signal-Free Intersections</a></b> — Submitted to Automatica
+              <p className="mt-2 text-muted-foreground">We’re excited to share that we submitted our latest work to Automatica, focusing on the challenges of coordinating autonomous vehicles in the presence of unpredictable pedestrians. Our paper presents a real-time framework that enables vehicles to broadcast emergency events, providing a critical layer of safety in signal-free intersections and showcasing the importance of reactive coordination strategies.</p>
+            </div>
+            <div>
+              <span className="text-2xl mr-2">🏁</span>
+              <b><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A1Nx-PQAAAAJ&citation_for_view=A1Nx-PQAAAAJ:YsMSGLbcyi4C" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Safe and Efficient Coexistence of Autonomous Vehicles with Human-Driven Traffic at Signalized Intersections</a></b> — Accepted at CDC 2025
+              <p className="mt-2 text-muted-foreground">We’re thrilled to announce that our paper "Safe and Efficient Coexistence of Autonomous Vehicles with Human-Driven Traffic at Signalized Intersections" has been accepted for presentation at the 2025 IEEE Conference on Decision and Control (CDC). In this work, we develop a control architecture that enables autonomous vehicles to safely and efficiently interact with human-driven traffic at signalized intersections, offering a scalable approach to managing mixed traffic environments.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Photos */}
+      <section id="photos" className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Photos</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {photos.map((photo, idx) => {
+              const alt = photo.caption;
+              return (
+                <div key={idx} className="rounded-lg overflow-hidden shadow-lg">
+                  <img src={`/${photo.filename}`} alt={alt} className="w-full h-64 object-cover" />
+                  <div className="p-4 text-center text-muted-foreground text-sm">{alt}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Downloadables */}
       <section id="downloads" className="py-20 bg-secondary">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -343,14 +370,6 @@ const Index = () => {
                 <Download className="h-5 w-5" />
                 PDF CV
               </a>
-            </Button>
-            <Button size="lg" variant="outline" className="gap-2">
-              <FileText className="h-5 w-5" />
-              Research Statement
-            </Button>
-            <Button size="lg" variant="outline" className="gap-2">
-              <BookOpen className="h-5 w-5" />
-              Teaching Portfolio
             </Button>
           </div>
         </div>
@@ -367,17 +386,23 @@ const Index = () => {
                 traffic control innovations? I'd love to hear from you.
               </p>
               <div className="flex gap-4">
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Linkedin className="h-4 w-4" />
-                  LinkedIn
+                <Button asChild variant="outline" size="sm" className="gap-2">
+                  <a href="https://www.linkedin.com/in/filippostzortzoglou/" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="h-4 w-4" />
+                    LinkedIn
+                  </a>
                 </Button>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Github className="h-4 w-4" />
-                  GitHub
+                <Button asChild variant="outline" size="sm" className="gap-2">
+                  <a href="https://github.com/ftzortzo" target="_blank" rel="noopener noreferrer">
+                    <Github className="h-4 w-4" />
+                    GitHub
+                  </a>
                 </Button>
-                <Button variant="outline" size="sm" className="gap-2">
-                  <Mail className="h-4 w-4" />
-                  Scholar
+                <Button asChild variant="outline" size="sm" className="gap-2">
+                  <a href="https://scholar.google.com/citations?user=A1Nx-PQAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">
+                    <Mail className="h-4 w-4" />
+                    Scholar
+                  </a>
                 </Button>
               </div>
             </div>
