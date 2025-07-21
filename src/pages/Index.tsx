@@ -171,7 +171,7 @@ const Index = () => {
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" variant="secondary" className="gap-2">
-              <a href="/Filippos_Tzortzoglou_CV.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/Filippos_Tzortzoglou_CV_v2.pdf" target="_blank" rel="noopener noreferrer">
                 <Download className="h-5 w-5" />
                 Download CV
               </a>
@@ -376,7 +376,7 @@ const Index = () => {
           <h2 className="font-poppins font-bold text-4xl text-foreground mb-12">Downloadables</h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="gap-2">
-              <a href="/Filippos_Tzortzoglou_CV.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="/Filippos_Tzortzoglou_CV_v2.pdf" target="_blank" rel="noopener noreferrer">
                 <Download className="h-5 w-5" />
                 PDF CV
               </a>
