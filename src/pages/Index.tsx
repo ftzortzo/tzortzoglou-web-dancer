@@ -162,7 +162,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex flex-col justify-center items-center overflow-hidden">
+      <section className="relative min-h-[60vh] flex flex-col justify-center items-center overflow-hidden pt-16 sm:pt-20">
         <video
           autoPlay
           loop
@@ -173,11 +173,11 @@ const Index = () => {
         />
         <div className="absolute inset-0 hero-gradient" />
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6 fade-in-up">
-          <h1 className="font-poppins font-bold text-5xl md:text-7xl mb-6">
+          <h1 className="font-poppins font-bold text-3xl sm:text-4xl md:text-7xl mb-6 break-words text-center">
             {typewriterText}
           </h1>
           <div className="flex justify-center">
-            <div className="font-semibold text-primary text-xl md:text-2xl mb-8 bg-white/70 rounded px-6 py-4 drop-shadow-lg inline-block" style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)'}}>
+            <div className="font-semibold text-primary text-base sm:text-lg md:text-2xl mb-8 bg-white/70 rounded px-4 sm:px-6 py-4 drop-shadow-lg inline-block max-w-full break-words text-center" style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)'}}>
               {typewriterSubText}
             </div>
           </div>
