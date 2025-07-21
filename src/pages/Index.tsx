@@ -147,10 +147,13 @@ const Index = () => {
     // eslint-disable-next-line
   }, []);
 
+  // Determine the other hero video for the Photos section
+  const otherHeroVideo = heroVideos.find(v => v !== selectedHeroVideo) || heroVideos[0];
+
   return (
     <div className={`min-h-screen font-inter scroll-smooth ${darkMode ? 'dark' : ''}`}>
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/50 backdrop-blur-md border-b border-border">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <h2 className="font-poppins font-bold text-xl">FT</h2>
           <div className="flex items-center gap-6">
@@ -353,7 +356,7 @@ const Index = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src={`${import.meta.env.BASE_URL}wall.mp4`}
+          src={otherHeroVideo}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-secondary z-10 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 relative z-20">
