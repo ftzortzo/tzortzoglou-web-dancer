@@ -245,14 +245,14 @@ const Index = () => {
               )}
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md mx-auto">
-            <Button asChild size="lg" variant="secondary" className="gap-2 w-full max-w-xs mx-auto">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center w-72 mx-auto">
+            <Button asChild size="lg" variant="secondary" className="gap-2 w-72 mx-auto">
               <a href={`${import.meta.env.BASE_URL}Filippos_Tzortzoglou_CV_v2.pdf`} target="_blank" rel="noopener noreferrer">
                 <Download className="h-5 w-5" />
                 Download CV
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="gap-2 border-white text-primary hover:bg-white hover:text-primary w-full max-w-xs mx-auto">
+            <Button asChild size="lg" variant="outline" className="gap-2 border-white text-primary hover:bg-white hover:text-primary w-72 mx-auto">
               <a href="https://youtu.be/FB6ATMZHgs0" target="_blank" rel="noopener noreferrer">
                 <Play className="h-5 w-5" />
                 Watch 2-min Research Reel
