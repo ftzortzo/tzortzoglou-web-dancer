@@ -169,7 +169,7 @@ const Index = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/hero-bg.mp4"
+          src={`${import.meta.env.BASE_URL}hero-bg.mp4`}
         />
         <div className="absolute inset-0 hero-gradient" />
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6 fade-in-up">
@@ -212,7 +212,7 @@ const Index = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/hero-bg2.mp4"
+          src={`${import.meta.env.BASE_URL}hero-bg2.mp4`}
         />
         <div className="absolute inset-0 about-gradient z-10 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 relative z-20">
@@ -252,7 +252,7 @@ const Index = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/output_video_1.mp4"
+          src={`${import.meta.env.BASE_URL}output_video_1.mp4`}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-secondary z-10 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 relative z-20">
@@ -287,7 +287,7 @@ const Index = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/bird_view_highway.mp4"
+          src={`${import.meta.env.BASE_URL}bird_view_highway.mp4`}
         />
         <div className="absolute inset-0 about-gradient z-10 pointer-events-none" />
         <div className="max-w-4xl mx-auto px-6 relative z-20">
@@ -318,7 +318,7 @@ const Index = () => {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/autonomous_robot.mp4"
+          src={`${import.meta.env.BASE_URL}autonomous_robot.mp4`}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-secondary z-10 pointer-events-none" />
         <div className="max-w-4xl mx-auto px-6 relative z-20">
@@ -350,7 +350,7 @@ const Index = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {photos.map(({ filename, caption }, idx) => (
               <div key={idx} className="rounded-lg overflow-hidden shadow-lg">
-                <img src={`/${filename}`} alt={caption} className="w-full h-64 object-cover" />
+                <img src={`${import.meta.env.BASE_URL}${filename}`} alt={caption} className="w-full h-64 object-cover" />
                 <div className="p-4 text-center text-muted-foreground text-sm">{caption}</div>
               </div>
             ))}
