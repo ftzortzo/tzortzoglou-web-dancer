@@ -21,7 +21,9 @@ import {
   Moon,
   ArrowDown,
   FileText,
-  Video
+  Video,
+  Menu,
+  X
 } from "lucide-react";
 
 // Import images
@@ -74,6 +76,7 @@ function useMultiTypewriter(messages, speed = 60, pause = 1200, vanishDuration =
 const Index = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [currentYear] = useState(new Date().getFullYear());
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     // Check for saved theme preference or default to light mode
@@ -196,10 +199,17 @@ const Index = () => {
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <h2 className="font-poppins font-bold text-xl">FT</h2>
           <div className="flex items-center gap-6">
+            {/* Hamburger icon for mobile */}
+            <button className="md:hidden p-2" onClick={() => setSidebarOpen(true)}>
+              <Menu className="h-7 w-7" />
+            </button>
+            {/* Desktop nav */}
             <div className="hidden md:flex gap-6">
               <button onClick={() => scrollToSection('about')} className="text-foreground hover:text-primary transition-colors">About</button>
-              <button onClick={() => scrollToSection('research')} className="text-foreground hover:text-primary transition-colors">Research</button>
               <button onClick={() => scrollToSection('publications')} className="text-foreground hover:text-primary transition-colors">Publications</button>
+              <button onClick={() => scrollToSection('honors')} className="text-foreground hover:text-primary transition-colors">Honors</button>
+              <button onClick={() => scrollToSection('news')} className="text-foreground hover:text-primary transition-colors">News</button>
+              <button onClick={() => scrollToSection('photos')} className="text-foreground hover:text-primary transition-colors">Photos</button>
               <button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-primary transition-colors">Contact</button>
             </div>
             <Button
@@ -212,6 +222,28 @@ const Index = () => {
             </Button>
           </div>
         </div>
+        {/* Simple mobile sidebar drawer */}
+        {sidebarOpen && (
+          <div className="fixed inset-0 z-50 bg-black/40 flex">
+            <div className="w-64 h-full shadow-xl p-0 flex flex-col justify-start items-stretch">
+              <div className="bg-white/80 backdrop-blur-md rounded-r-2xl shadow-xl m-2 p-6 flex flex-col h-[calc(100vh-1rem)]">
+                <div className="flex justify-between items-center mb-8">
+                  <span className="font-bold text-lg">Menu</span>
+                  <button onClick={() => setSidebarOpen(false)}><X className="h-7 w-7" /></button>
+                </div>
+                <nav className="flex flex-col gap-2 flex-1">
+                  <button onClick={() => { setSidebarOpen(false); scrollToSection('about'); }} className="text-left text-foreground rounded-lg px-3 py-2 hover:bg-primary/10 transition">About</button>
+                  <button onClick={() => { setSidebarOpen(false); scrollToSection('publications'); }} className="text-left text-foreground rounded-lg px-3 py-2 hover:bg-primary/10 transition">Publications</button>
+                  <button onClick={() => { setSidebarOpen(false); scrollToSection('honors'); }} className="text-left text-foreground rounded-lg px-3 py-2 hover:bg-primary/10 transition">Honors</button>
+                  <button onClick={() => { setSidebarOpen(false); scrollToSection('news'); }} className="text-left text-foreground rounded-lg px-3 py-2 hover:bg-primary/10 transition">News</button>
+                  <button onClick={() => { setSidebarOpen(false); scrollToSection('photos'); }} className="text-left text-foreground rounded-lg px-3 py-2 hover:bg-primary/10 transition">Photos</button>
+                  <button onClick={() => { setSidebarOpen(false); scrollToSection('contact'); }} className="text-left text-foreground rounded-lg px-3 py-2 hover:bg-primary/10 transition">Contact</button>
+                </nav>
+              </div>
+            </div>
+            <div className="flex-1" onClick={() => setSidebarOpen(false)} />
+          </div>
+        )}
       </nav>
 
       {/* Shared video background for hero + about */}
@@ -462,13 +494,17 @@ const Index = () => {
             </div>
             <Card>
               <CardContent className="p-6">
-                <form className="space-y-4">
+                <form 
+                  action="https://formspree.io/f/xanbewjp" 
+                  method="POST" 
+                  className="space-y-4"
+                >
                   <div className="grid grid-cols-2 gap-4">
-                    <Input placeholder="Name" />
-                    <Input placeholder="Email" type="email" />
+                    <Input name="name" placeholder="Name" required />
+                    <Input name="email" type="email" placeholder="Email" required />
                   </div>
-                  <Textarea placeholder="Message" rows={4} />
-                  <Button className="w-full">Send Message</Button>
+                  <Textarea name="message" placeholder="Message" rows={4} required />
+                  <Button type="submit" className="w-full">Send Message</Button>
                 </form>
               </CardContent>
             </Card>
