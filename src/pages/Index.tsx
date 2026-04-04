@@ -124,6 +124,16 @@ const Index = () => {
 
   const honors = [
     {
+      year: "2026",
+      title: "Award for Excellence in Teaching",
+      description: "Category: Pedagogy, Cornell University."
+    },
+    {
+      year: "2026",
+      title: "Student Spotlight",
+      description: <>Selected as the Student Spotlight in Cornell University's weekly news. <a href="https://gradschool.cornell.edu/spotlights/student-spotlight-filippos-tzortzoglou/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Read the spotlight on the Cornell Graduate School website</a>.</>
+    },
+    {
       year: "2025",
       title: "IEEE Outstanding Student Paper Prize on Smart Cities",
       description: <>For the paper: <a href="https://ieeexplore.ieee.org/abstract/document/10551377" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">F.N. Tzortzoglou, L.E. Beaver, A. Malikopoulos, 'A Feasibility Analysis at Signal-Free Intersections'</a>, IEEE Letters on Control Systems Society (LCSS).</>
@@ -170,12 +180,15 @@ const Index = () => {
 
   // Update the photos array and all video references to use safe filenames
   const photos = [
-    { filename: "transportation_research_board_2024_photo.jpg", caption: "Transportation Research Board 2024" },
-    { filename: "cdc_2024_milano.jpeg", caption: "CDC 2024 (Milano)" },
-    { filename: "american_control_conference_2024.jpg", caption: "American Control Conference 2024 (Toronto)" },
-    { filename: "ids_lab_party_2024.jpeg", caption: "IDS Lab Party 2024" },
-    { filename: "fan_in_the_lab_2.jpg", caption: "Fan in the Lab" },
-    { filename: "fan_in_the_lab.jpg", caption: "Fan in the Lab" }
+    { filename: "transportation_research_board_2024_photo.jpg", caption: "Transportation Research Board, Washington, DC, 2024" },
+    { filename: "cdc_2024_milano.jpeg", caption: "Conference on Decision and Control, Milan, Italy, 2024" },
+    { filename: "american_control_conference_2024.jpg", caption: "American Control Conference, Toronto, Canada, 2024" },
+    { filename: "ids_lab_party_2024.jpeg", caption: "IDS Lab Party, Ithaca, NY, 2024" },
+    { filename: "Internship at Mathworks_2024.jpg", caption: "Graduate research internship at MathWorks, Natick, MA, 2024" },
+    { filename: "Photo at Cornell 2025.jpg", caption: "Cornell University, Ithaca, NY, 2025" },
+    { filename: "Teaching at Cornell 2025.jpg", caption: "Teaching at Cornell University, Ithaca, NY, 2025" },
+    { filename: "Presentation_CDC_rio.jpeg", caption: "Conference on Decision and Control, Rio, Brazil, 2025" },
+    { filename: "Award_smart_cities.jpg", caption: "Best Student Paper Award from the IEEE Technical Committee on Smart Cities, Rio, Brazil, 2025" }
   ];
 
   // Randomly select a hero background video on mount
@@ -309,10 +322,9 @@ const Index = () => {
               <h2 className="font-poppins font-bold text-4xl text-foreground mb-6">About Me</h2>
               <div className="text-lg text-muted-foreground leading-relaxed space-y-4 bg-white/70 rounded px-6 py-4 drop-shadow-lg" style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)'}}>
                 <p>
-                  My name is Filippos N. Tzortzoglou and I'm a third-year Ph.D. candidate in <a href="https://www.engineering.cornell.edu/cee/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Civil & Environmental Engineering</a> at Cornell University, 
+                  My name is Filippos N. Tzortzoglou and I'm a fourth-year Ph.D. candidate in <a href="https://www.engineering.cornell.edu/cee/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Civil & Environmental Engineering</a> at Cornell University, 
                   working in the <a href="https://ids-lab.net/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">IDS Lab</a> with <a href="https://scholar.google.com/citations?user=ScKI3psAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Prof. Andreas Malikopoulos</a>. My research targets real-time optimal 
-                  control for mixed traffic at signalized intersections, blending classical control, reinforcement 
-                  learning, and micromobility insights.
+                  control for mixed traffic at signalized intersections, blending classical control and micromobility insights.
                 </p>
                 <p>
                   I've co-authored papers in IEEE Transactions on Control Systems Technology, IEEE Transactions on Intelligent Transportation Systems, IEEE Control Systems Letters, 
@@ -367,7 +379,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Honors & Service */}
+      {/* Honors and Awards */}
       <section id="honors" className="py-20 relative overflow-hidden">
         <video
           autoPlay
@@ -379,7 +391,7 @@ const Index = () => {
         />
         <div className="absolute inset-0 about-gradient z-10 pointer-events-none" />
         <div className="max-w-4xl mx-auto px-6 relative z-20">
-          <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Honors & Service</h2>
+          <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Honors and Awards</h2>
           <div className="space-y-6">
             {honors.map((honor, index) => (
               <Card key={index} className="hover-lift transition-all duration-300">
@@ -413,8 +425,8 @@ const Index = () => {
           <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">News</h2>
           <div className="space-y-8 text-lg">
             <div>
-              <b><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A1Nx-PQAAAAJ&citation_for_view=A1Nx-PQAAAAJ:YsMSGLbcyi4C" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Safe and Efficient Coexistence of Autonomous Vehicles with Human-Driven Traffic at Signalized Intersections</a></b> — Accepted at CDC 2025
-              <p className="mt-2 text-muted-foreground">We’re thrilled to announce that our paper "Safe and Efficient Coexistence of Autonomous Vehicles with Human-Driven Traffic at Signalized Intersections" has been accepted for presentation at the 2025 IEEE Conference on Decision and Control (CDC). In this work, we develop a control architecture that enables autonomous vehicles to safely and efficiently interact with human-driven traffic at signalized intersections, offering a scalable approach to managing mixed traffic environments.</p>
+              <b><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A1Nx-PQAAAAJ&citation_for_view=A1Nx-PQAAAAJ:YsMSGLbcyi4C" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Safe and Efficient Coexistence of Autonomous Vehicles with Human-Driven Traffic at Signalized Intersections</a></b> — Published in the proceedings of the 2025 IEEE Conference on Decision and Control
+              <p className="mt-2 text-muted-foreground">We’re thrilled to share that our paper "Safe and Efficient Coexistence of Autonomous Vehicles with Human-Driven Traffic at Signalized Intersections" was presented at the 2025 IEEE Conference on Decision and Control and published in the conference proceedings. In this work, we develop a control architecture that enables autonomous vehicles to safely and efficiently interact with human-driven traffic at signalized intersections, offering a scalable approach to managing mixed traffic environments.</p>
             </div>
             <div>
               <b><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=A1Nx-PQAAAAJ&citation_for_view=A1Nx-PQAAAAJ:eQOLeE2rZwMC" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Handling Pedestrian Uncertainty in Coordinating Autonomous Vehicles at Signal-Free Intersections</a></b> — Submitted to Automatica
@@ -444,7 +456,7 @@ const Index = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {photos.map(({ filename, caption }, idx) => (
               <div key={idx} className="rounded-lg overflow-hidden shadow-lg">
-                <img src={`${import.meta.env.BASE_URL}${filename}`} alt={caption} className="w-full h-64 object-cover" />
+                <img src={`${import.meta.env.BASE_URL}${encodeURIComponent(filename)}`} alt={caption} className="w-full h-64 object-cover" />
                 <div className="p-4 text-center text-muted-foreground text-sm">{caption}</div>
               </div>
             ))}
@@ -516,7 +528,7 @@ const Index = () => {
       <footer className="py-8 bg-secondary border-t relative">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-muted-foreground">
-            © {currentYear} Filippos Tzortzoglou — Made with ☕ & MATLAB scripts.
+            © {currentYear} Filippos Tzortzoglou — Made with ☕.
           </p>
         </div>
         <button
