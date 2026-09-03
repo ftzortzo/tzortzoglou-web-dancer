@@ -292,7 +292,7 @@ const Index = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center w-72 mx-auto">
             <Button asChild size="lg" variant="secondary" className="gap-2 w-72 mx-auto">
-              <a href={`${import.meta.env.BASE_URL}Filippos_Tzortzoglou_CV_v2.pdf`} target="_blank" rel="noopener noreferrer">
+              <a href={`${import.meta.env.BASE_URL}Filippos_CV.pdf`} target="_blank" rel="noopener noreferrer">
                 <Download className="h-5 w-5" />
                 Download CV
               </a>
@@ -322,15 +322,15 @@ const Index = () => {
               <h2 className="font-poppins font-bold text-4xl text-foreground mb-6">About Me</h2>
               <div className="text-lg text-muted-foreground leading-relaxed space-y-4 bg-white/70 rounded px-6 py-4 drop-shadow-lg" style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)'}}>
                 <p>
-                  My name is Filippos N. Tzortzoglou and I'm a third-year Ph.D. candidate in <a href="https://www.engineering.cornell.edu/cee/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Civil & Environmental Engineering</a> at Cornell University, 
-                  working in the <a href="https://ids-lab.net/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">IDS Lab</a> with <a href="https://scholar.google.com/citations?user=ScKI3psAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Prof. Andreas Malikopoulos</a>. My research targets real-time optimal 
+                  My name is Filippos N. Tzortzoglou and I'm a fifth-year Ph.D. candidate in <a href="https://www.engineering.cornell.edu/cee/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Civil & Environmental Engineering</a> at Cornell University, graduating this year.
+                  I work in the <a href="https://ids-lab.net/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">IDS Lab</a> with <a href="https://scholar.google.com/citations?user=ScKI3psAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Prof. Andreas Malikopoulos</a>. My research targets real-time optimal 
                   control for mixed traffic at signalized intersections, blending classical control and micromobility insights.
                 </p>
                 <p>
                   I've co-authored papers in IEEE Transactions on Control Systems Technology, IEEE Transactions on Intelligent Transportation Systems, IEEE Control Systems Letters, 
                   and I love translating theory into code that actually runs.                </p>
                 <p className="mt-4"> When I'm not optimizing traffic 
-                flows, I enjoy playing soccer and am an enthusiastic supporter of Arsenal Football Club in the Premier League.</p>
+                flows, I enjoy playing soccer and am an enthusiastic supporter of Arsenal Football Club in the Premier League. I also love listening to and playing music.</p>
               </div>
             </div>
             <div className="flex justify-center">
