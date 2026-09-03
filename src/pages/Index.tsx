@@ -75,14 +75,32 @@ function useMultiTypewriter(messages, speed = 60, pause = 1200, vanishDuration =
   return { displayed, isVanishing, step, isDone, showCursor };
 }
 
-// Auto-advancing photo slider: crossfades through the photos, one at a time,
-// pausing while the pointer is over it or the tab is hidden.
+// Auto-advancing photo slider. The frame resizes to each photo's own aspect
+// ratio as it comes in, so portrait and landscape shots share the space
+// without ever revealing a backdrop behind them.
 function PhotoSlider({ photos, interval = 3000 }) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [ratios, setRatios] = useState({});
   const count = photos.length;
 
+  const src = (filename) => `${import.meta.env.BASE_URL}${encodeURIComponent(filename)}`;
   const go = (i) => setIndex(((i % count) + count) % count);
+
+  // Measure each photo up front so the frame can size itself to the real image.
+  useEffect(() => {
+    let alive = true;
+    photos.forEach(({ filename }) => {
+      const img = new Image();
+      img.onload = () => {
+        if (alive && img.naturalHeight) {
+          setRatios((r) => ({ ...r, [filename]: img.naturalWidth / img.naturalHeight }));
+        }
+      };
+      img.src = src(filename);
+    });
+    return () => { alive = false; };
+  }, [photos]);
 
   useEffect(() => {
     if (paused || count <= 1) return;
@@ -98,7 +116,9 @@ function PhotoSlider({ photos, interval = 3000 }) {
     return () => document.removeEventListener("visibilitychange", onVis);
   }, []);
 
-  const src = (filename) => `${import.meta.env.BASE_URL}${encodeURIComponent(filename)}`;
+  // Keep the frame within sane bounds so one very tall shot can't dominate.
+  const raw = ratios[photos[index].filename] ?? 16 / 9;
+  const ratio = Math.min(Math.max(raw, 0.78), 16 / 9);
 
   return (
     <div
@@ -108,17 +128,21 @@ function PhotoSlider({ photos, interval = 3000 }) {
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
-      <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-lg bg-neutral-900">
+      <div
+        className="relative w-full max-h-[72vh] rounded-lg overflow-hidden shadow-lg"
+        style={{ aspectRatio: String(ratio), transition: "aspect-ratio 700ms cubic-bezier(0.4, 0, 0.2, 1)" }}
+      >
         {photos.map(({ filename, caption }, i) => (
-          <div
+          <img
             key={filename}
-            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${i === index ? "opacity-100" : "opacity-0"}`}
+            src={src(filename)}
+            alt={i === index ? caption : ""}
             aria-hidden={i !== index}
-          >
-            {/* Blurred fill so portrait and landscape shots both sit well in one frame */}
-            <img src={src(filename)} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-70" />
-            <img src={src(filename)} alt={caption} loading={i === 0 ? "eager" : "lazy"} className="absolute inset-0 w-full h-full object-contain" />
-          </div>
+            loading={i === 0 ? "eager" : "lazy"}
+            className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${
+              i === index ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-105 blur-[3px]"
+            }`}
+          />
         ))}
 
         <button
@@ -137,10 +161,6 @@ function PhotoSlider({ photos, interval = 3000 }) {
         >
           <ChevronRight className="w-5 h-5" />
         </button>
-
-        <div className="absolute top-3 right-3 rounded-full bg-black/50 text-white text-xs px-2.5 py-1 tabular-nums">
-          {index + 1} / {count}
-        </div>
       </div>
 
       <p key={index} className="mt-4 text-center text-muted-foreground animate-in fade-in duration-500 min-h-[3rem]" aria-live="polite">
@@ -155,7 +175,9 @@ function PhotoSlider({ photos, interval = 3000 }) {
             onClick={() => go(i)}
             aria-label={`Go to photo ${i + 1}`}
             aria-current={i === index}
-            className={`h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-primary ${i === index ? "w-6 bg-primary" : "w-2 bg-foreground/25 hover:bg-foreground/40"}`}
+            className={`h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-primary ${
+              i === index ? "w-6 bg-primary" : "w-2 bg-foreground/25 hover:bg-foreground/40"
+            }`}
           />
         ))}
       </div>
