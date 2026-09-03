@@ -237,8 +237,13 @@ const Index = () => {
   const honors = [
     {
       year: "2026",
+      title: "Graduate Inclusive Educator of the Year",
+      description: <><a href="https://news.cornell.edu/stories/2026/05/2026-inclusive-excellence-awards-celebrate-engineering-community" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Office of Inclusive Excellence</a>, Cornell University.</>
+    },
+    {
+      year: "2026",
       title: "Award for Excellence in Teaching",
-      description: "Category: Pedagogy, Cornell University."
+      description: <>Category: Pedagogy, Cornell University. <a href="https://assembly.cornell.edu/faculty-advising-teaching-and-mentorship-awards" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Faculty Advising, Teaching and Mentorship Awards</a>.</>
     },
     {
       year: "2026",
