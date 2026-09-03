@@ -293,7 +293,6 @@ const Index = () => {
   // Update the photos array and all video references to use safe filenames
   const photos = [
     { filename: "transportation_research_board_2024_photo.jpg", caption: "Transportation Research Board, Washington, DC, 2024" },
-    { filename: "cdc_2024_milano.jpeg", caption: "Conference on Decision and Control, Milan, Italy, 2024" },
     { filename: "american_control_conference_2024.jpg", caption: "American Control Conference, Toronto, Canada, 2024" },
     { filename: "ids_lab_party_2024.jpeg", caption: "IDS Lab Party, Ithaca, NY, 2024" },
     { filename: "Internship at Mathworks_2024.jpg", caption: "Graduate research internship at MathWorks, Natick, MA, 2024" },
