@@ -23,7 +23,9 @@ import {
   FileText,
   Video,
   Menu,
-  X
+  X,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 
 // Import images
@@ -71,6 +73,94 @@ function useMultiTypewriter(messages, speed = 60, pause = 1200, vanishDuration =
     // eslint-disable-next-line
   }, [step]);
   return { displayed, isVanishing, step, isDone, showCursor };
+}
+
+// Auto-advancing photo slider: crossfades through the photos, one at a time,
+// pausing while the pointer is over it or the tab is hidden.
+function PhotoSlider({ photos, interval = 3000 }) {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const count = photos.length;
+
+  const go = (i) => setIndex(((i % count) + count) % count);
+
+  useEffect(() => {
+    if (paused || count <= 1) return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % count), interval);
+    return () => clearInterval(id);
+  }, [paused, count, interval]);
+
+  // Don't advance in a tab nobody is looking at.
+  useEffect(() => {
+    const onVis = () => setPaused(document.hidden);
+    document.addEventListener("visibilitychange", onVis);
+    return () => document.removeEventListener("visibilitychange", onVis);
+  }, []);
+
+  const src = (filename) => `${import.meta.env.BASE_URL}${encodeURIComponent(filename)}`;
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
+      <div className="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-lg bg-neutral-900">
+        {photos.map(({ filename, caption }, i) => (
+          <div
+            key={filename}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${i === index ? "opacity-100" : "opacity-0"}`}
+            aria-hidden={i !== index}
+          >
+            {/* Blurred fill so portrait and landscape shots both sit well in one frame */}
+            <img src={src(filename)} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-70" />
+            <img src={src(filename)} alt={caption} loading={i === 0 ? "eager" : "lazy"} className="absolute inset-0 w-full h-full object-contain" />
+          </div>
+        ))}
+
+        <button
+          type="button"
+          onClick={() => go(index - 1)}
+          aria-label="Previous photo"
+          className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white text-foreground p-2 shadow-md transition focus:outline-none focus:ring-2 focus:ring-primary"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <button
+          type="button"
+          onClick={() => go(index + 1)}
+          aria-label="Next photo"
+          className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 hover:bg-white text-foreground p-2 shadow-md transition focus:outline-none focus:ring-2 focus:ring-primary"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+
+        <div className="absolute top-3 right-3 rounded-full bg-black/50 text-white text-xs px-2.5 py-1 tabular-nums">
+          {index + 1} / {count}
+        </div>
+      </div>
+
+      <p key={index} className="mt-4 text-center text-muted-foreground animate-in fade-in duration-500 min-h-[3rem]" aria-live="polite">
+        {photos[index].caption}
+      </p>
+
+      <div className="mt-2 flex justify-center gap-2">
+        {photos.map(({ filename }, i) => (
+          <button
+            key={filename}
+            type="button"
+            onClick={() => go(i)}
+            aria-label={`Go to photo ${i + 1}`}
+            aria-current={i === index}
+            className={`h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-primary ${i === index ? "w-6 bg-primary" : "w-2 bg-foreground/25 hover:bg-foreground/40"}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 const Index = () => {
@@ -450,13 +540,8 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-secondary z-10 pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 relative z-20">
           <h2 className="font-poppins font-bold text-4xl text-center text-foreground mb-12">Photos</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {photos.map(({ filename, caption }, idx) => (
-              <div key={idx} className="rounded-lg overflow-hidden shadow-lg">
-                <img src={`${import.meta.env.BASE_URL}${encodeURIComponent(filename)}`} alt={caption} className="w-full h-64 object-cover" />
-                <div className="p-4 text-center text-muted-foreground text-sm">{caption}</div>
-              </div>
-            ))}
+          <div className="max-w-4xl mx-auto">
+            <PhotoSlider photos={photos} interval={3000} />
           </div>
         </div>
       </section>
