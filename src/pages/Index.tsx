@@ -301,7 +301,6 @@ const Index = () => {
     { filename: "american_control_conference_2024.jpg", caption: "American Control Conference, Toronto, Canada, 2024" },
     { filename: "ids_lab_party_2024.jpeg", caption: "IDS Lab Party, Ithaca, NY, 2024" },
     { filename: "Internship at Mathworks_2024.jpg", caption: "Graduate research internship at MathWorks, Natick, MA, 2024" },
-    { filename: "Photo at Cornell 2025.jpg", caption: "Cornell University, Ithaca, NY, 2025" },
     { filename: "Teaching at Cornell 2025.jpg", caption: "Teaching at Cornell University, Ithaca, NY, 2025" },
     { filename: "Presentation_CDC_rio.jpeg", caption: "Conference on Decision and Control, Rio, Brazil, 2025" },
     { filename: "Award_smart_cities.jpg", caption: "Best Student Paper Award from the IEEE Technical Committee on Smart Cities, Rio, Brazil, 2025" }
