@@ -412,12 +412,6 @@ const Index = () => {
                 Download CV
               </a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="gap-2 border-white text-primary hover:bg-white hover:text-primary w-72 mx-auto">
-              <a href="https://youtu.be/FB6ATMZHgs0" target="_blank" rel="noopener noreferrer">
-                <Play className="h-5 w-5" />
-                Watch 2-min Research Reel
-              </a>
-            </Button>
           </div>
         </div>
         <button 
