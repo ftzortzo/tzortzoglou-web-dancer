@@ -432,8 +432,8 @@ const Index = () => {
               <div className="text-lg text-muted-foreground leading-relaxed space-y-4 bg-white/70 rounded px-6 py-4 drop-shadow-lg" style={{textShadow: '0 2px 8px rgba(0,0,0,0.15)'}}>
                 <p>
                   My name is Filippos N. Tzortzoglou and I'm a fifth-year Ph.D. candidate in <a href="https://www.engineering.cornell.edu/cee/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Civil & Environmental Engineering</a> at Cornell University, graduating this year.
-                  I work in the <a href="https://ids-lab.net/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">IDS Lab</a> with <a href="https://scholar.google.com/citations?user=ScKI3psAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Prof. Andreas Malikopoulos</a>. My research targets real-time optimal 
-                  control for mixed traffic at signalized intersections, blending classical control and micromobility insights.
+                  I work in the <a href="https://ids-lab.net/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">IDS Lab</a> with <a href="https://scholar.google.com/citations?user=ScKI3psAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary/80">Prof. Andreas Malikopoulos</a>. My research sits at the intersection of control theory, optimization, and machine learning, 
+                  with a focus on real-time optimal control of connected and automated vehicles in mixed traffic. Along the way, I've worked with control barrier functions, Pontryagin's Minimum Principle, state estimation, distributed optimization, and learning-based models of human driving behavior.
                 </p>
                 <p>
                   I've co-authored papers in IEEE Transactions on Control Systems Technology, IEEE Transactions on Intelligent Transportation Systems, IEEE Control Systems Letters, 
