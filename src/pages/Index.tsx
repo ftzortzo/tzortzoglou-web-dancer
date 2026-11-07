@@ -262,11 +262,6 @@ const Index = () => {
     },
     {
       year: "2024",
-      title: "NSF Grant for Non-Academic Research Internships for Graduate Students (INTERN) Program",
-      description: "Awarded by the National Science Foundation."
-    },
-    {
-      year: "2024",
       title: "Fellowship from the Gerondelis Foundation",
       description: "Awarded by the Gerondelis Foundation."
     }
